@@ -1,6 +1,3 @@
-
-/*created by prashant shukla */
-
 var paddle2 =10,paddle1=10;
 
 var paddle1X = 10,paddle1Height = 110;
@@ -20,6 +17,11 @@ var ball = {
     dx:3,
     dy:3
 }
+
+rightWristY =0;
+rightWristX =0;
+scoreRightWrist =0;
+game_status ="";
 
 function setup(){
   var canvas =  createCanvas(700,600);
@@ -50,9 +52,15 @@ function gotPoses(results)
   }
 }
 
+function startGame()
+{
+  game_status = "start";
+  document.getElementById("status").innerHTML = "Game Is Loaded";
+}
 
 function draw(){
-
+if(game_status =="start")
+{
  background(0); 
 
  fill("black");
@@ -63,6 +71,12 @@ function draw(){
  stroke("black");
  rect(0,0,20,700);
  
+ if(scoreRightWrist > 0.2)
+ {
+  fill("red");
+ stroke("red");
+ circle(rightWristX,rightWristY,30);
+ }
    //funtion paddleInCanvas call 
    paddleInCanvas();
  
@@ -91,7 +105,7 @@ function draw(){
    //function move call which in very important
     move();
 }
-
+}
 
 
 //function reset when ball does notcame in the contact of padde
